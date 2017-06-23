@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= htmlWebpackPlugin.options.title %></title>
+    <script type="text/javascript">
+ 		<%= compilation.assets[htmlWebpackPlugin.files.chunks.main.entry.substr(htmlWebpackPlugin.files.publicPath.length)].source() %> 
+ 			 //内联化引入js
+ 	</script>
+</head>
+<body>
+		<% for (var key in htmlWebpackPlugin.files.chunks) {%>
+ 			<% if(key !== 'main') { %>
+ 				<script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>" type="text/javascript" charset="utf-8"></script>
+ 			<% } %>
+ 		<% } %>
+  <!-- 注释 -->
+</body>
+</html>
